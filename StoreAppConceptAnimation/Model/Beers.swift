@@ -66,7 +66,7 @@ var beers: [Beer] = [
          availableIn: [.bottle, .twelveCan],
          beerType: .yearRound,
          photo: [
-            Photo(title: "tripletail-vignette"),
+            Photo(title: "TRP-Silo-final"),
         ]),
     
     Beer(title: "420 Extra Pale Ale",

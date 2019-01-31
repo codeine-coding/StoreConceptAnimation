@@ -13,6 +13,8 @@
 		9FF5138422022F02007F4FE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5138222022F02007F4FE9 /* LaunchScreen.storyboard */; };
 		9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5138C22022F32007F4FE9 /* Beers.swift */; };
 		9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513912203A854007F4FE9 /* BeerCell.swift */; };
+		9FF513952203A94C007F4FE9 /* KeeponTruckin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF513942203A94C007F4FE9 /* KeeponTruckin.ttf */; };
+		9FF513972203B345007F4FE9 /* BeerSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		9FF5138522022F02007F4FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF5138C22022F32007F4FE9 /* Beers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beers.swift; sourceTree = "<group>"; };
 		9FF513912203A854007F4FE9 /* BeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
+		9FF513942203A94C007F4FE9 /* KeeponTruckin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeeponTruckin.ttf; sourceTree = "<group>"; };
+		9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSectionHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		9FF5137822022F01007F4FE9 /* StoreAppConceptAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				9FF513932203A93E007F4FE9 /* Font */,
 				9FF5138B22022F1D007F4FE9 /* Model */,
 				9FF5138E22032C87007F4FE9 /* View */,
 				9FF5138F22032C8D007F4FE9 /* Controller */,
@@ -76,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF513912203A854007F4FE9 /* BeerCell.swift */,
+				9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +103,14 @@
 				9FF5138522022F02007F4FE9 /* Info.plist */,
 			);
 			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		9FF513932203A93E007F4FE9 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9FF513942203A94C007F4FE9 /* KeeponTruckin.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF5138422022F02007F4FE9 /* LaunchScreen.storyboard in Resources */,
+				9FF513952203A94C007F4FE9 /* KeeponTruckin.ttf in Resources */,
 				9FF5138122022F02007F4FE9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +186,7 @@
 			files = (
 				9FF5137C22022F01007F4FE9 /* ViewController.swift in Sources */,
 				9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */,
+				9FF513972203B345007F4FE9 /* BeerSectionHeader.swift in Sources */,
 				9FF5137A22022F01007F4FE9 /* AppDelegate.swift in Sources */,
 				9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */,
 			);

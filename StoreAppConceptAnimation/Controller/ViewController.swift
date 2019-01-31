@@ -15,6 +15,7 @@ enum BeerSection: Int {
 
 class ViewController: UIViewController {
     let cellID = "Cell ID"
+    let headerID = "Header ID"
     let yearRoundBeers = beers.filter({ $0.beerType == BeerType.yearRound })
     let seasonalBeers = beers.filter({ $0.beerType == BeerType.seasonal })
     
@@ -27,13 +28,20 @@ class ViewController: UIViewController {
         return iv
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
-        tableView.dataSource = self
-        tableView.delegate = self
-        return tableView
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: view.frame.width, height: view.frame.width)
+        layout.minimumInteritemSpacing = 8
+        layout.headerReferenceSize = CGSize(width: view.frame.width, height: 55)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
     }()
     
     //
@@ -43,7 +51,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = navigationTitleViewImage
-        tableView.register(BeerCell.self, forCellReuseIdentifier: cellID)
+        collectionView.register(BeerCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.register(BeerSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         setupView()
     }
     
@@ -53,16 +62,16 @@ class ViewController: UIViewController {
     //
     fileprivate func setupView() {
         view.backgroundColor = .white
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         displayConstraints()
     }
     
     fileprivate func displayConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
         
     }
@@ -75,14 +84,15 @@ class ViewController: UIViewController {
 
 
 //
-//// Extention: UITableView Data Source & Delegate
+//// Extention: UICollectionView Data Source & Delegate
 //
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let beerSection = BeerSection(rawValue: section) else { fatalError() }
         
         switch beerSection {
@@ -93,8 +103,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! BeerCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! BeerCell
         guard let beerSection = BeerSection(rawValue: indexPath.section) else { fatalError() }
         var beer: Beer
         switch beerSection {
@@ -107,23 +117,25 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let beerSection = BeerSection(rawValue: section) else { fatalError() }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionheader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! BeerSectionHeader
+        
+       guard let beerSection = BeerSection(rawValue: indexPath.section) else { fatalError() }
+        
+        let headerTitle: String
         switch beerSection {
         case .yearRounds:
-            return "Year Rounds"
+            headerTitle = "Year Rounds"
         case .seasonals:
-            return "Seasonals"
+            headerTitle = "Seasonals"
         }
+        
+        sectionheader.headerTitle.text = headerTitle
+        return sectionheader
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
-    }
-    
-    
+
 }
