@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9FF5137622022F01007F4FE9 /* SweetWaterAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweetWaterAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FF5137622022F01007F4FE9 /* StoreAppConceptAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAppConceptAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF5137922022F01007F4FE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF5137B22022F01007F4FE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9FF5138022022F02007F4FE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		9FF5136D22022F01007F4FE9 = {
 			isa = PBXGroup;
 			children = (
-				9FF5137822022F01007F4FE9 /* SweetWaterAnimation */,
+				9FF5137822022F01007F4FE9 /* StoreAppConceptAnimation */,
 				9FF5137722022F01007F4FE9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +46,12 @@
 		9FF5137722022F01007F4FE9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FF5137622022F01007F4FE9 /* SweetWaterAnimation.app */,
+				9FF5137622022F01007F4FE9 /* StoreAppConceptAnimation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9FF5137822022F01007F4FE9 /* SweetWaterAnimation */ = {
+		9FF5137822022F01007F4FE9 /* StoreAppConceptAnimation */ = {
 			isa = PBXGroup;
 			children = (
 				9FF5138B22022F1D007F4FE9 /* Model */,
@@ -59,7 +59,7 @@
 				9FF5138F22032C8D007F4FE9 /* Controller */,
 				9FF5139022032CAC007F4FE9 /* SupportingFiles */,
 			);
-			path = SweetWaterAnimation;
+			path = StoreAppConceptAnimation;
 			sourceTree = "<group>";
 		};
 		9FF5138B22022F1D007F4FE9 /* Model */ = {
@@ -99,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9FF5137522022F01007F4FE9 /* SweetWaterAnimation */ = {
+		9FF5137522022F01007F4FE9 /* StoreAppConceptAnimation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FF5138822022F02007F4FE9 /* Build configuration list for PBXNativeTarget "SweetWaterAnimation" */;
+			buildConfigurationList = 9FF5138822022F02007F4FE9 /* Build configuration list for PBXNativeTarget "StoreAppConceptAnimation" */;
 			buildPhases = (
 				9FF5137222022F01007F4FE9 /* Sources */,
 				9FF5137322022F01007F4FE9 /* Frameworks */,
@@ -111,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = SweetWaterAnimation;
+			name = StoreAppConceptAnimation;
 			productName = SweetWaterAnimation;
-			productReference = 9FF5137622022F01007F4FE9 /* SweetWaterAnimation.app */;
+			productReference = 9FF5137622022F01007F4FE9 /* StoreAppConceptAnimation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9FF5137122022F01007F4FE9 /* Build configuration list for PBXProject "SweetWaterAnimation" */;
+			buildConfigurationList = 9FF5137122022F01007F4FE9 /* Build configuration list for PBXProject "StoreAppConceptAnimation" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -144,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9FF5137522022F01007F4FE9 /* SweetWaterAnimation */,
+				9FF5137522022F01007F4FE9 /* StoreAppConceptAnimation */,
 			);
 		};
 /* End PBXProject section */
@@ -308,12 +308,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZQ3ZGBLE6;
-				INFOPLIST_FILE = SweetWaterAnimation/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/StoreAppConceptAnimation/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeinetech.SweetWaterAnimation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeinetech.StoreAppConceptAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -326,12 +326,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZQ3ZGBLE6;
-				INFOPLIST_FILE = SweetWaterAnimation/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/StoreAppConceptAnimation/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeinetech.SweetWaterAnimation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeinetech.StoreAppConceptAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9FF5137122022F01007F4FE9 /* Build configuration list for PBXProject "SweetWaterAnimation" */ = {
+		9FF5137122022F01007F4FE9 /* Build configuration list for PBXProject "StoreAppConceptAnimation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FF5138622022F02007F4FE9 /* Debug */,
@@ -350,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FF5138822022F02007F4FE9 /* Build configuration list for PBXNativeTarget "SweetWaterAnimation" */ = {
+		9FF5138822022F02007F4FE9 /* Build configuration list for PBXNativeTarget "StoreAppConceptAnimation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FF5138922022F02007F4FE9 /* Debug */,

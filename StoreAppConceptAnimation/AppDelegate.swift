@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SweetWaterAnimation
+//  StoreAppConceptAnimation
 //
 //  Created by Allen Whearry on 1/30/19.
 //  Copyright © 2019 Codeine Technologies LLC. All rights reserved.
