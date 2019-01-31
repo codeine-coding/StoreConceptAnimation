@@ -12,6 +12,7 @@
 		9FF5138122022F02007F4FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5138022022F02007F4FE9 /* Assets.xcassets */; };
 		9FF5138422022F02007F4FE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5138222022F02007F4FE9 /* LaunchScreen.storyboard */; };
 		9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5138C22022F32007F4FE9 /* Beers.swift */; };
+		9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513912203A854007F4FE9 /* BeerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9FF5138322022F02007F4FE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9FF5138522022F02007F4FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF5138C22022F32007F4FE9 /* Beers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beers.swift; sourceTree = "<group>"; };
+		9FF513912203A854007F4FE9 /* BeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		9FF5138E22032C87007F4FE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9FF513912203A854007F4FE9 /* BeerCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				9FF5137C22022F01007F4FE9 /* ViewController.swift in Sources */,
 				9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */,
 				9FF5137A22022F01007F4FE9 /* AppDelegate.swift in Sources */,
+				9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
