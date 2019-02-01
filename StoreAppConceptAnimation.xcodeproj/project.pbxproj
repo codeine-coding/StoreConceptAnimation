@@ -15,6 +15,7 @@
 		9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513912203A854007F4FE9 /* BeerCell.swift */; };
 		9FF513952203A94C007F4FE9 /* KeeponTruckin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF513942203A94C007F4FE9 /* KeeponTruckin.ttf */; };
 		9FF513972203B345007F4FE9 /* BeerSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */; };
+		9FF513992204C519007F4FE9 /* BeerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF513982204C519007F4FE9 /* BeerDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9FF513912203A854007F4FE9 /* BeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCell.swift; sourceTree = "<group>"; };
 		9FF513942203A94C007F4FE9 /* KeeponTruckin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeeponTruckin.ttf; sourceTree = "<group>"; };
 		9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSectionHeader.swift; sourceTree = "<group>"; };
+		9FF513982204C519007F4FE9 /* BeerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF5137B22022F01007F4FE9 /* ViewController.swift */,
+				9FF513982204C519007F4FE9 /* BeerDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF5137C22022F01007F4FE9 /* ViewController.swift in Sources */,
+				9FF513992204C519007F4FE9 /* BeerDetailViewController.swift in Sources */,
 				9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */,
 				9FF513972203B345007F4FE9 /* BeerSectionHeader.swift in Sources */,
 				9FF5137A22022F01007F4FE9 /* AppDelegate.swift in Sources */,

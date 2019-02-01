@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.width - 32, height: view.frame.width)
-        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 16
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 55)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
