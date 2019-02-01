@@ -50,7 +50,7 @@ class BeerCell: UICollectionViewCell {
     fileprivate func setupView() {
         addSubview(beerImage)
         addSubview(beerName)
-        layer.cornerRadius = 15
+        layer.cornerRadius = 8
         clipsToBounds = true
         backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 0.7322554652)
         displayConstraints()

@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.width, height: view.frame.width)
+        layout.itemSize = CGSize(width: view.frame.width - 32, height: view.frame.width)
         layout.minimumInteritemSpacing = 8
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 55)
         
@@ -136,6 +136,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         sectionheader.headerTitle.text = headerTitle
         return sectionheader
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 
 }
