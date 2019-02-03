@@ -41,6 +41,9 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(BeerCell.self, forCellWithReuseIdentifier: self.cellID)
+        collectionView.register(BeerSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID)
+        collectionView.isUserInteractionEnabled = true
         return collectionView
     }()
     
@@ -51,8 +54,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = navigationTitleViewImage
-        collectionView.register(BeerCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.register(BeerSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         setupView()
     }
     
@@ -117,10 +118,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let sectionheader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath) as! BeerSectionHeader
         
@@ -136,6 +133,21 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         sectionheader.headerTitle.text = headerTitle
         return sectionheader
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let beerSection = BeerSection(rawValue: indexPath.section) else { fatalError() }
+        var beer: Beer
+        switch beerSection {
+        case .yearRounds :
+            beer = yearRoundBeers[indexPath.row]
+        case .seasonals:
+            beer = seasonalBeers[indexPath.row]
+        }
+        
+        let destinationController = BeerDetailViewController()
+        destinationController.beer = beer
+        navigationController?.pushViewController(destinationController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
