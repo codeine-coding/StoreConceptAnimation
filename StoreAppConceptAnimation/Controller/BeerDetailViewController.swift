@@ -27,7 +27,7 @@ class BeerDetailViewController: UIViewController {
             self.descriptionLabel.text = beerDescription
             self.photos = beerPhotos
             self.pageControl.numberOfPages = beerPhotos.count
-//            self.beerImage.image = UIImage(named: beerImage)
+            //            self.beerImage.image = UIImage(named: beerImage)
         }
     }
     
@@ -39,6 +39,14 @@ class BeerDetailViewController: UIViewController {
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv
+    }()
+    
+    let blurView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blur)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        return view
     }()
     
     let scrollView: UIScrollView = {
@@ -60,7 +68,7 @@ class BeerDetailViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = #colorLiteral(red: 0.9469566941, green: 0.7492473722, blue: 0.476852417, alpha: 1)
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 0.9725490196, blue: 0.9333333333, alpha: 1)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -249,7 +257,10 @@ class BeerDetailViewController: UIViewController {
         view.layer.shadowOpacity = 0.4
         return view
     }()
-
+    
+    // view controllers
+    let cartController = AddToCartViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = navigationTitleViewImage
@@ -266,6 +277,7 @@ class BeerDetailViewController: UIViewController {
         view.addSubview(scrollView)
         view.addSubview(addContainerView)
         view.addSubview(likeContainerView)
+        view.addSubview(blurView)
         
         addContainerView.addSubview(addToCartBtn)
         likeContainerView.addSubview(likeBtn)
@@ -273,12 +285,30 @@ class BeerDetailViewController: UIViewController {
         scrollView.addSubview(photoCollectionView)
         scrollView.addSubview(pageControl)
         scrollView.addSubview(fullDetailStackView)
-        imageHoldingView.addSubview(beerImage)
+        
+        cartController.view.translatesAutoresizingMaskIntoConstraints = false
+        cartController.view.layer.cornerRadius = 20
+        cartController.view.clipsToBounds = true
+        cartController.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+        addChild(cartController)
+        view.addSubview(cartController.view)
+        cartController.didMove(toParent: self)
+        
+        addToCartBtn.addTarget(self, action: #selector(addToCartPressed), for: .touchUpInside)
+        
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(blurViewTapped))
+        blurView.addGestureRecognizer(tapGuesture)
         displayConstraints()
     }
     
     fileprivate func displayConstraints() {
         NSLayoutConstraint.activate([
+            
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -319,10 +349,41 @@ class BeerDetailViewController: UIViewController {
             likeBtn.trailingAnchor.constraint(equalTo: likeContainerView.trailingAnchor),
             likeBtn.leadingAnchor.constraint(equalTo: likeContainerView.leadingAnchor),
             
+            cartController.view.topAnchor.constraint(equalTo: view.bottomAnchor),
+            cartController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cartController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cartController.view.heightAnchor.constraint(equalToConstant: 406),
             
-        ])
+            
+            ])
+        view.layoutIfNeeded()
     }
-
+    
+    //
+    //// Action Functions
+    //
+    @objc func addToCartPressed() {
+        let upAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeIn) {
+            self.cartController.view.center.y = self.view.center.y + (self.cartController.view.frame.height / 2)
+            self.blurView.alpha = 1
+        }
+        upAnimation.startAnimation()
+    }
+    
+    @objc func blurViewTapped() {
+        if blurView.alpha == 1 {
+            dismissCart()
+        }
+    }
+    
+    func dismissCart() {
+        let dismissAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeInOut) {
+            self.blurView.alpha = 0
+            self.cartController.view.center.y = self.view.frame.maxY + (self.cartController.view.frame.height / 2)
+        }
+        dismissAnimation.startAnimation()
+    }
+    
 }
 
 extension BeerDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

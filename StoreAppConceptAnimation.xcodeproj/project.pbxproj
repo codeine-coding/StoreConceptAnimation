@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F13C5FF2206963600F182B6 /* AddToCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F13C5FE2206963600F182B6 /* AddToCartViewController.swift */; };
+		9FCF6D312205007600E02FF8 /* BeerPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF6D302205007600E02FF8 /* BeerPhotoCell.swift */; };
 		9FF5137A22022F01007F4FE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5137922022F01007F4FE9 /* AppDelegate.swift */; };
 		9FF5137C22022F01007F4FE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5137B22022F01007F4FE9 /* ViewController.swift */; };
 		9FF5138122022F02007F4FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5138022022F02007F4FE9 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F13C5FE2206963600F182B6 /* AddToCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewController.swift; sourceTree = "<group>"; };
+		9FCF6D302205007600E02FF8 /* BeerPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerPhotoCell.swift; sourceTree = "<group>"; };
 		9FF5137622022F01007F4FE9 /* StoreAppConceptAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreAppConceptAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF5137922022F01007F4FE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF5137B22022F01007F4FE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			children = (
 				9FF513912203A854007F4FE9 /* BeerCell.swift */,
 				9FF513962203B345007F4FE9 /* BeerSectionHeader.swift */,
+				9FCF6D302205007600E02FF8 /* BeerPhotoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 			children = (
 				9FF5137B22022F01007F4FE9 /* ViewController.swift */,
 				9FF513982204C519007F4FE9 /* BeerDetailViewController.swift */,
+				9F13C5FE2206963600F182B6 /* AddToCartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,7 +196,9 @@
 				9FF5137C22022F01007F4FE9 /* ViewController.swift in Sources */,
 				9FF513992204C519007F4FE9 /* BeerDetailViewController.swift in Sources */,
 				9FF5138D22022F32007F4FE9 /* Beers.swift in Sources */,
+				9FCF6D312205007600E02FF8 /* BeerPhotoCell.swift in Sources */,
 				9FF513972203B345007F4FE9 /* BeerSectionHeader.swift in Sources */,
+				9F13C5FF2206963600F182B6 /* AddToCartViewController.swift in Sources */,
 				9FF5137A22022F01007F4FE9 /* AppDelegate.swift in Sources */,
 				9FF513922203A854007F4FE9 /* BeerCell.swift in Sources */,
 			);
