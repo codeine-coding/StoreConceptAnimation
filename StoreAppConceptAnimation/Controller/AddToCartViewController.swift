@@ -21,6 +21,8 @@ class AddToCartViewController: UIViewController {
         }
     }
     
+    var detailViewController: BeerDetailViewController?
+    
     let beerImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +38,7 @@ class AddToCartViewController: UIViewController {
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.numberOfLines = 0
+        label.textAlignment = .right
         return label
     }()
     
@@ -83,6 +86,31 @@ class AddToCartViewController: UIViewController {
         return btn
     }()
     
+    let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        return view
+    }()
+    
+    // stack views
+    lazy var titleABVStack: UIStackView = {
+        let sv = UIStackView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.distribution = .fillEqually
+        sv.spacing = 8
+        sv.addArrangedSubview(self.titleLabel)
+        sv.addArrangedSubview(self.abvLabel)
+        return sv
+    }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,18 +119,73 @@ class AddToCartViewController: UIViewController {
     }
     
     fileprivate func setupView() {
+        view.addSubview(containerView)
+        containerView.addSubview(titleABVStack)
+        containerView.addSubview(separatorView)
+        view.addSubview(beerImage)
         view.addSubview(addToCartBtn)
-        view.backgroundColor = .white
         displayConstraints()
+        
+        addToCartBtn.addTarget(self, action: #selector(addToCartPressed), for: .touchUpInside)
     }
     
     fileprivate func displayConstraints() {
         NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            beerImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            beerImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            beerImage.heightAnchor.constraint(equalToConstant: 150),
+            beerImage.widthAnchor.constraint(equalToConstant: 46),
+            
+//            separatorView.topAnchor.constraint(equalTo: titleABVStack.bottomAnchor, constant: 15),
+            separatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            separatorView.widthAnchor.constraint(equalToConstant: view.frame.width * 0.75),
+            separatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            titleABVStack.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            titleABVStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            titleABVStack.leadingAnchor.constraint(equalTo: beerImage.trailingAnchor, constant: 8),
+            
+            
             addToCartBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             addToCartBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addToCartBtn.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
             addToCartBtn.heightAnchor.constraint(equalToConstant: 60),
         ])
+    }
+    
+    @objc func addToCartPressed() {
+        let prepareCartAnimation = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+            self.addToCartBtn.frame.size.width = 60
+            self.addToCartBtn.center.x = self.view.center.x
+            self.containerView.layer.cornerRadius = 30
+            self.containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            self.containerView.frame.size.height = 60
+            self.containerView.frame.size.width = 60
+            self.containerView.center.x = self.view.center.x
+            self.beerImage.center = self.containerView.center
+            self.beerImage.transform = CGAffineTransform(scaleX: 0.25, y: 0.25)
+        }
+        
+        let sendToCartAnimation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+            self.containerView.center = self.addToCartBtn.center
+            self.beerImage.center = self.addToCartBtn.center
+        }
+        
+        
+        
+        sendToCartAnimation.addCompletion { _ in
+            self.detailViewController?.dismissCart()
+        }
+        prepareCartAnimation.addCompletion { _ in
+            sendToCartAnimation.startAnimation()
+        }
+        prepareCartAnimation.startAnimation()
     }
 
 }
