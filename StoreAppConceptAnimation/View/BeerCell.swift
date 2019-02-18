@@ -83,7 +83,7 @@ class BeerCell: UICollectionViewCell {
         addSubview(heartImage)
         layer.cornerRadius = 8
         clipsToBounds = true
-        backgroundColor = #colorLiteral(red: 0.9469566941, green: 0.7492473722, blue: 0.476852417, alpha: 1)
+        backgroundColor = #colorLiteral(red: 1, green: 0.9725490196, blue: 0.9333333333, alpha: 1)
         displayConstraints()
     }
     
