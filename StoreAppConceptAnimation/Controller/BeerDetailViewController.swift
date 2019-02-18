@@ -286,15 +286,18 @@ class BeerDetailViewController: UIViewController {
         scrollView.addSubview(pageControl)
         scrollView.addSubview(fullDetailStackView)
         
+        
         cartController.view.translatesAutoresizingMaskIntoConstraints = false
-        cartController.view.layer.cornerRadius = 20
-        cartController.view.clipsToBounds = true
-        cartController.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        cartController.view.layer.backgroundColor = UIColor.clear.cgColor
+        cartController.view.layer.shadowColor = UIColor.black.cgColor
+        cartController.view.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cartController.view.layer.shadowRadius = 8
+        cartController.view.layer.shadowOpacity = 0.4
         
         addChild(cartController)
         view.addSubview(cartController.view)
         cartController.didMove(toParent: self)
-        
+        cartController.beer = beer
         addToCartBtn.addTarget(self, action: #selector(addToCartPressed), for: .touchUpInside)
         
         let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(blurViewTapped))
@@ -363,6 +366,7 @@ class BeerDetailViewController: UIViewController {
     //// Action Functions
     //
     @objc func addToCartPressed() {
+        cartController.detailViewController = self
         let upAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeIn) {
             self.cartController.view.center.y = self.view.center.y + (self.cartController.view.frame.height / 2)
             self.blurView.alpha = 1
