@@ -388,6 +388,9 @@ class BeerDetailViewController: UIViewController {
         let dismissAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeInOut) {
             self.blurView.alpha = 0
             self.cartController.view.center.y = self.view.frame.maxY + (self.cartController.view.frame.height / 2)
+        }
+        dismissAnimation.addCompletion { _ in
+            self.cartController.beerImage.transform = .identity
             self.cartController.view.removeFromSuperview()
             self.cartController.removeFromParent()
         }
