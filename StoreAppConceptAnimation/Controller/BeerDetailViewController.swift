@@ -259,7 +259,16 @@ class BeerDetailViewController: UIViewController {
     }()
     
     // view controllers
-    let cartController = AddToCartViewController()
+    let cartController: AddToCartViewController = {
+        let cartController = AddToCartViewController()
+        cartController.view.translatesAutoresizingMaskIntoConstraints = false
+        cartController.view.layer.backgroundColor = UIColor.clear.cgColor
+        cartController.view.layer.shadowColor = UIColor.black.cgColor
+        cartController.view.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cartController.view.layer.shadowRadius = 8
+        cartController.view.layer.shadowOpacity = 0.4
+        return cartController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -286,18 +295,7 @@ class BeerDetailViewController: UIViewController {
         scrollView.addSubview(pageControl)
         scrollView.addSubview(fullDetailStackView)
         
-        
-        cartController.view.translatesAutoresizingMaskIntoConstraints = false
-        cartController.view.layer.backgroundColor = UIColor.clear.cgColor
-        cartController.view.layer.shadowColor = UIColor.black.cgColor
-        cartController.view.layer.shadowOffset = CGSize(width: 0, height: 8)
-        cartController.view.layer.shadowRadius = 8
-        cartController.view.layer.shadowOpacity = 0.4
-        
-        addChild(cartController)
-        view.addSubview(cartController.view)
-        cartController.didMove(toParent: self)
-        cartController.beer = beer
+
         addToCartBtn.addTarget(self, action: #selector(addToCartPressed), for: .touchUpInside)
         
         let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(blurViewTapped))
@@ -351,14 +349,7 @@ class BeerDetailViewController: UIViewController {
             likeBtn.bottomAnchor.constraint(equalTo: likeContainerView.bottomAnchor),
             likeBtn.trailingAnchor.constraint(equalTo: likeContainerView.trailingAnchor),
             likeBtn.leadingAnchor.constraint(equalTo: likeContainerView.leadingAnchor),
-            
-            cartController.view.topAnchor.constraint(equalTo: view.bottomAnchor),
-            cartController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cartController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cartController.view.heightAnchor.constraint(equalToConstant: 406),
-            
-            
-            ])
+        ])
         view.layoutIfNeeded()
     }
     
@@ -366,8 +357,21 @@ class BeerDetailViewController: UIViewController {
     //// Action Functions
     //
     @objc func addToCartPressed() {
+        view.addSubview(cartController.view)
+        addChild(cartController)
+
+        cartController.beer = beer
         cartController.detailViewController = self
+        NSLayoutConstraint.activate([
+            cartController.view.topAnchor.constraint(equalTo: view.bottomAnchor),
+            cartController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cartController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cartController.view.heightAnchor.constraint(equalToConstant: 406),
+        ])
+        view.layoutIfNeeded()
+        
         let upAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeIn) {
+            self.cartController.didMove(toParent: self)
             self.cartController.view.center.y = self.view.center.y + (self.cartController.view.frame.height / 2)
             self.blurView.alpha = 1
         }
@@ -384,6 +388,8 @@ class BeerDetailViewController: UIViewController {
         let dismissAnimation = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeInOut) {
             self.blurView.alpha = 0
             self.cartController.view.center.y = self.view.frame.maxY + (self.cartController.view.frame.height / 2)
+            self.cartController.view.removeFromSuperview()
+            self.cartController.removeFromParent()
         }
         dismissAnimation.startAnimation()
     }
