@@ -21,7 +21,7 @@ class AddToCartViewController: UIViewController {
         }
     }
     
-    var detailViewController: BeerDetailViewController?
+    weak var detailViewController: BeerDetailViewController?
     
     let beerImage: UIImageView = {
         let iv = UIImageView()
